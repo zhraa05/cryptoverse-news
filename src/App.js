@@ -1,23 +1,49 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
+import { Exchanges, Homepage, News, Cryptocurrencies, CryptoDetails, Navbar } from './components';
 
-function App() {
+import { Layout, Typography, Space } from 'antd';
+
+
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="navbar">
+        <Navbar />
+      </div>
+      <div className="main">
+        <Layout >
+          <div className="routes ">
+            <Routes>
+              <Route element={<Homepage />} exact path="/" />
+              <Route element={<Exchanges />} exact path="/exchanges" />
+              <Route element={<Cryptocurrencies />} exact path="/cryptocurrencies" />
+              <Route element={<CryptoDetails />} exact path="/crypto/:coinId" />
+              <Route element={<News />} exact path="/news" />
+
+            </Routes>
+          </div>
+        </Layout>
+
+
+        <div className="footer">
+          <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>
+            Copyright © 2021
+            <Link to="/">
+              Cryptoverse Inc.
+            </Link> <br />
+            All Rights Reserved.
+          </Typography.Title>
+          <Space>
+            <Link to="/">Home</Link>
+            <Link to="/exchanges">Exchanges</Link>
+            <Link to="/news">News</Link>
+          </Space>
+        </div>
+      </div>
     </div>
   );
 }
